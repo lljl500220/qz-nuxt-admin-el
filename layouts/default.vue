@@ -8,6 +8,7 @@ import QzAsideBar from './components/QzAsideBar.vue'
 <template>
   <div class="qz-layout">
     <QzHeader/>
+    <slot/>
     <QzAsideBar/>
   </div>
 </template>

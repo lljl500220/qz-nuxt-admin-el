@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from 'path'
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: {enabled: true},
@@ -14,12 +15,23 @@ export default defineNuxtConfig({
         '/': {prerender: true, redirect: '/home'},
     },
 
-    css: [
-        '@core/style/index.scss'
-    ],
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: '@use "@core/style/index.scss" as *;'
+                }
+            }
+        }
+    },
+
+    elementPlus: {
+        icon: 'ElIcon',
+        importStyle: 'scss',
+    },
 
     alias: {
-        '@core': './@core',
-        '@layouts': './@layouts'
+        '@core': path.resolve(__dirname, './@core'),
+        '@layouts': path.resolve(__dirname, './@layouts')
     }
 })
